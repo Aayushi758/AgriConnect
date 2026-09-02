@@ -1,0 +1,10 @@
+.env
+.env.example
+venv/
+node_modules/
+__pycache__/
+*.pyc
+*.db
+*.db-shm
+*.db-wal
+uploads/
