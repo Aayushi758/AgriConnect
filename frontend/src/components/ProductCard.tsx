@@ -20,6 +20,7 @@ export interface Product {
 
 interface ProductCardProps {
   product: Product;
+  onAddToCart: () => void;
 }
 
 const FALLBACK_IMAGES: Record<string, string> = {
@@ -31,7 +32,7 @@ const FALLBACK_IMAGES: Record<string, string> = {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const defaultFallback = 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400';
-  const imageUrl = product.primary_image 
+  const imageUrl = product.primary_image
     ? (product.primary_image.startsWith('http') ? product.primary_image : `/uploads/${product.primary_image}`)
     : (FALLBACK_IMAGES[product.name] || defaultFallback);
 
@@ -39,16 +40,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const [added, setAdded] = useState(false);
 
   return (
-    <motion.div 
+    <motion.div
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3 }}
       className="bg-white rounded-3xl shadow-soft border border-gray-100/60 overflow-hidden flex flex-col h-full hover:shadow-xl hover:border-green-100 transition-all group"
     >
       <Link to={`/consumer/product/${product.id}`} className="relative aspect-[4/3] block overflow-hidden bg-gray-50 p-2">
         <div className="absolute inset-2 rounded-2xl overflow-hidden">
-          <img 
-            src={imageUrl} 
-            alt={product.name} 
+          <img
+            src={imageUrl}
+            alt={product.name}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           {product.is_organic && (
@@ -57,12 +58,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
           )}
           <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md text-gray-800 text-xs font-bold px-2.5 py-1.5 rounded-xl flex items-center shadow-sm border border-white/50">
-            <Star className="w-3.5 h-3.5 text-yellow-500 mr-1.5 fill-current" /> 
+            <Star className="w-3.5 h-3.5 text-yellow-500 mr-1.5 fill-current" />
             {product.rating?.toFixed(1) || '4.5'}
           </div>
         </div>
       </Link>
-      
+
       <div className="p-5 flex flex-col flex-grow relative">
         <div className="flex justify-between items-start mb-1">
           <div className="w-full">
@@ -74,7 +75,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <Package className="w-3 h-3 mr-1" /> {product.available_quantity > 0 ? `${product.available_quantity} available` : 'Out of stock'}
               </p>
             </div>
-            
+
             <Link to={`/consumer/product/${product.id}`}>
               <h3 className="font-extrabold text-gray-900 text-xl font-heading leading-tight hover:text-green-600 transition-colors line-clamp-1">
                 {product.name}
@@ -82,20 +83,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </Link>
           </div>
         </div>
-        
+
         <p className="text-gray-500 text-sm flex items-center mb-5 font-medium mt-1">
           <MapPin className="w-4 h-4 mr-1 text-gray-400" /> {product.location || 'Local Farm'}
           {product.farmer_name && <span className="mx-2 text-gray-300">•</span>}
           {product.farmer_name && <span className="text-gray-600">{product.farmer_name}</span>}
         </p>
-        
+
         <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
           <div className="flex items-baseline">
             <span className="text-2xl font-extrabold text-gray-900 font-heading">₹{product.price}</span>
             <span className="text-gray-500 text-sm ml-1 font-medium">/{product.unit}</span>
           </div>
-          
-          <button 
+
+          <button
             disabled={product.available_quantity <= 0}
             onClick={(e) => {
               e.preventDefault();
@@ -105,10 +106,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             }}
             className={`
               relative overflow-hidden p-3 rounded-2xl font-bold transition-all flex items-center justify-center min-w-[3rem]
-              ${product.available_quantity <= 0 
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed' 
-                : added 
-                  ? 'bg-green-500 text-white shadow-lg shadow-green-500/30' 
+              ${product.available_quantity <= 0
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : added
+                  ? 'bg-green-500 text-white shadow-lg shadow-green-500/30'
                   : 'bg-green-50 text-green-700 hover:bg-green-500 hover:text-white hover:shadow-lg hover:shadow-green-500/20'
               }
             `}
