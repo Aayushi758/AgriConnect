@@ -120,8 +120,8 @@ const ConsumerHome = () => {
       {/* Features Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-sm font-bold tracking-widest text-green-600 uppercase mb-3">Why KisanSetu?</h2>
+          <div className="text-center mb-24">
+            <h2 className="text-sm font-bold tracking-widest text-green-600 uppercase mb-3">Why AgriConnect?</h2>
             <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 font-heading">A better way to buy food</h3>
           </div>
           
@@ -146,7 +146,7 @@ const ConsumerHome = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="gradient-primary rounded-3xl p-8 shadow-xl shadow-green-500/20 card-hover transform md:-translate-y-4"
+              className="gradient-primary rounded-3xl p-8 shadow-xl shadow-green-500/20 card-hover"
             >
               <div className="w-14 h-14 bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl flex items-center justify-center mb-6 text-white">
                 <ShieldCheck className="w-7 h-7" />
@@ -193,7 +193,7 @@ const ConsumerHome = () => {
             {[
               { name: 'Vegetables', img: 'https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?q=80&w=800', count: '120+ items' },
               { name: 'Fruits', img: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?q=80&w=800', count: '85+ items' },
-              { name: 'Grains & Pulses', img: 'https://images.unsplash.com/photo-1586201375761-83865001e8ac?q=80&w=800', count: '45+ items' },
+              { name: 'Grains & Pulses', img: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?q=80&w=800', count: '45+ items' },
               { name: 'Spices', img: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=800', count: '60+ items' }
             ].map((cat, idx) => (
               <Link to={`/consumer/marketplace?category=${cat.name}`} key={idx}>

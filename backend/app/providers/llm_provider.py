@@ -19,12 +19,12 @@ class MockLLMProvider(LLMProvider):
     """Mock LLM provider for development - uses rule-based responses."""
     
     SYSTEM_KNOWLEDGE = {
-        "kisansetu": "KisanSetu is a direct farmer-to-consumer agricultural marketplace that eliminates intermediaries.",
+        "agriconnect": "AgriConnect is a direct farmer-to-consumer agricultural marketplace that eliminates intermediaries.",
         "add_product": "To add a product: Go to your Dashboard → Click 'Add Product' → Fill in name, category, price, quantity, and upload photos → Click Save.",
         "inventory": "Your inventory is tracked automatically. When orders are placed, stock is reserved and deducted. View your current stock on the Dashboard or Inventory page.",
         "orders": "Orders go through states: Pending → Confirmed → Preparing → Ready for Pickup → Out for Delivery → Delivered. You can track all orders from your Orders page.",
         "returns": "If a customer requests a return, the order status changes to 'Return Requested'. Once approved, inventory is restored automatically.",
-        "payments": "Currently, KisanSetu supports Cash on Delivery (COD), UPI, Card, and Net Banking through our secure payment system.",
+        "payments": "Currently, AgriConnect supports Cash on Delivery (COD), UPI, Card, and Net Banking through our secure payment system.",
         "pricing": "Set competitive prices using our Price Intelligence tool. It shows current market prices, trends, and suggests an optimal selling range.",
         "dashboard": "Your dashboard shows: Total Products, Active Listings, Inventory, Revenue, Orders, Profit/Loss, and Sales Trends.",
     }
@@ -69,7 +69,7 @@ class MockLLMProvider(LLMProvider):
         
         # General patterns
         if any(w in prompt_lower for w in ["hello", "hi", "hey", "namaste"]):
-            responses.append("Namaste! 🙏 I'm your KisanSetu AI assistant. I can help you with:\n- 📊 Market prices and price suggestions\n- 🌾 Crop recommendations\n- 🌤️ Weather information\n- 📦 Order management\n- 💡 Tips for using KisanSetu")
+            responses.append("Namaste! 🙏 I'm your AgriConnect AI assistant. I can help you with:\n- 📊 Market prices and price suggestions\n- 🌾 Crop recommendations\n- 🌤️ Weather information\n- 📦 Order management\n- 💡 Tips for using AgriConnect")
         
         if any(w in prompt_lower for w in ["price", "rate", "cost"]):
             responses.append("I can help with pricing! Use the **Price Intelligence** tool in your dashboard to see:\n"
@@ -91,7 +91,7 @@ class MockLLMProvider(LLMProvider):
                     "Orders automatically update your inventory.")
         
         if any(w in prompt_lower for w in ["help", "how to", "guide"]):
-            responses.append("Here's a quick guide to KisanSetu:\n"
+            responses.append("Here's a quick guide to AgriConnect:\n"
                     "1. **Add Products**: Dashboard → Add Product → Fill details → Save\n"
                     "2. **Manage Inventory**: Stock updates automatically with orders\n"
                     "3. **Price Intelligence**: Get market prices and selling suggestions\n"
@@ -107,12 +107,12 @@ class MockLLMProvider(LLMProvider):
                     unique_responses.append(r)
             return "\n\n---\n\n".join(unique_responses)
         
-        return ("I'm your KisanSetu AI assistant. I can help you with:\n"
+        return ("I'm your AgriConnect AI assistant. I can help you with:\n"
                 "- 📊 Market prices and pricing advice\n"
                 "- 🌾 What crop to grow next\n"
                 "- 🌤️ Weather and forecasts\n"
                 "- 📦 Managing orders and inventory\n"
-                "- 💡 Using KisanSetu features\n\n"
+                "- 💡 Using AgriConnect features\n\n"
                 "Try asking something specific, like 'What is the market price of tomato?' or 'How do I add a product?'")
 from google import genai
 

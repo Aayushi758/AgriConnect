@@ -29,7 +29,7 @@ const Support = () => {
         },
         {
           id: 2,
-          participant_name: 'KisanSetu Support Team',
+          participant_name: 'AgriConnect Support Team',
           participant_avatar: null,
           last_message: 'Your ticket #1042 has been resolved.',
           last_message_time: 'Yesterday',

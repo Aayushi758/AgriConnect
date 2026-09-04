@@ -560,7 +560,7 @@ async def ai_assistant(msg: AssistantMessage, current_user: User = Depends(get_c
     
     response = await llm.generate(
         msg.message,
-        system_prompt="You are KisanSetu's AI assistant helping farmers and consumers.",
+        system_prompt="You are AgriConnect's AI assistant helping farmers and consumers.",
         context=context,
     )
     

@@ -1,6 +1,6 @@
-# KisanSetu
+# AgriConnect
 
-KisanSetu is a direct farmer-to-consumer agricultural marketplace. It allows farmers to sell their freshly grown crops directly to consumers without intermediaries.
+AgriConnect is a direct farmer-to-consumer agricultural marketplace. It allows farmers to sell their freshly grown crops directly to consumers without intermediaries.
 
 ## Prerequisites
 - Node.js (v18+)
@@ -21,5 +21,5 @@ KisanSetu is a direct farmer-to-consumer agricultural marketplace. It allows far
 3. `npm run dev`
 
 ## Demo Accounts
-- **Farmer**: `farmer1@kisansetu.com` / `farmer123`
-- **Consumer**: `consumer1@kisansetu.com` / `consumer123`
+- **Farmer**: `farmer1@agriconnect.com` / `farmer123`
+- **Consumer**: `consumer1@agriconnect.com` / `consumer123`

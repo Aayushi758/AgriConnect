@@ -58,7 +58,7 @@ const Register = () => {
             <Sprout className="h-8 w-8 text-green-600" />
           </div>
           <h2 className="mt-2 text-3xl font-extrabold text-gray-900 font-heading">
-            Join KisanSetu
+            Join AgriConnect
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             Already have an account?{' '}

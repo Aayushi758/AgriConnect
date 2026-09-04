@@ -30,7 +30,7 @@ const FALLBACK_IMAGES: Record<string, string> = {
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const defaultFallback = 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=400';
+  const defaultFallback = 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400';
   const imageUrl = product.primary_image 
     ? (product.primary_image.startsWith('http') ? product.primary_image : `/uploads/${product.primary_image}`)
     : (FALLBACK_IMAGES[product.name] || defaultFallback);

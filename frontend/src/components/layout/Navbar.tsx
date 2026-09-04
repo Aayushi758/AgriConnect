@@ -75,7 +75,7 @@ const Navbar = () => {
               <Sprout className="h-6 w-6 text-white" />
             </div>
             <span className="font-heading font-extrabold text-xl tracking-tight text-gray-900">
-              Kisan<span className="text-transparent bg-clip-text gradient-primary">Setu</span>
+              Agri<span className="text-transparent bg-clip-text gradient-primary">Connect</span>
             </span>
           </div>
 

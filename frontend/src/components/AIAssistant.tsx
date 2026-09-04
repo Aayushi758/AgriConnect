@@ -8,7 +8,7 @@ const AIAssistant = () => {
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{role: 'ai' | 'user', content: string}[]>([
-    { role: 'ai', content: 'Namaste! 🙏 I am your KisanSetu AI assistant. How can I help you today?' }
+    { role: 'ai', content: 'Namaste! 🙏 I am your AgriConnect AI assistant. How can I help you today?' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);

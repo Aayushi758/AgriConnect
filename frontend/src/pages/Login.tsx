@@ -144,8 +144,8 @@ const Login = () => {
           
           <div className="mt-6 text-center text-sm text-gray-500">
             <p>Demo Accounts:</p>
-            <p className="mt-1">Farmer: farmer1@kisansetu.com / farmer123</p>
-            <p>Consumer: consumer1@kisansetu.com / consumer123</p>
+            <p className="mt-1">Farmer: farmer1@agriconnect.com / farmer123</p>
+            <p>Consumer: consumer1@agriconnect.com / consumer123</p>
           </div>
         </form>
       </motion.div>

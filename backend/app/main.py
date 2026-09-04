@@ -1,4 +1,4 @@
-"""KisanSetu - Direct Farmer-to-Consumer Agricultural Marketplace.
+"""AgriConnect - Direct Farmer-to-Consumer Agricultural Marketplace.
 
 FastAPI application entry point.
 """
@@ -20,7 +20,7 @@ from app.routers.api_routes import (
 settings = get_settings()
 
 app = FastAPI(
-    title="KisanSetu API",
+    title="AgriConnect API",
     description=(
         "Direct Farmer-to-Consumer Agricultural Marketplace API. "
         "Smart India Hackathon - PS 26033."
@@ -67,7 +67,7 @@ def startup():
 
 @app.get("/api/health")
 def health_check():
-    return {"status": "healthy", "app": "KisanSetu", "version": "1.0.0"}
+    return {"status": "healthy", "app": "AgriConnect", "version": "1.0.0"}
 
 
 @app.post("/api/seed")
@@ -85,7 +85,7 @@ def seed_database():
 @app.get("/")
 def root():
     return {
-        "message": "Welcome to KisanSetu API",
+        "message": "Welcome to AgriConnect API",
         "docs": "/api/docs",
         "health": "/api/health",
     }
