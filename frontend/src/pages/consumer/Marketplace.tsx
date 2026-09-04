@@ -8,23 +8,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Marketplace = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialCategory = searchParams.get('category');
-  
+
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState<{id: number, name: string}[]>([]);
-  
+  const [categories, setCategories] = useState<{ id: number, name: string }[]>([]);
+
   // Filters
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory || '');
   const [isOrganic, setIsOrganic] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
-  
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
         const res = await productsAPI.getCategories();
         setCategories(res.data);
-        
+
         // If category was in URL by name, try to match it
         if (initialCategory && isNaN(Number(initialCategory))) {
           const match = res.data.find((c: any) => c.name.toLowerCase() === initialCategory.toLowerCase());
@@ -47,7 +47,7 @@ const Marketplace = () => {
         if (search) params.search = search;
         if (selectedCategory && !isNaN(Number(selectedCategory))) params.category_id = selectedCategory;
         if (isOrganic) params.is_organic = true;
-        
+
         const res = await productsAPI.getMarketplace(params);
         setProducts(res.data);
       } catch (err) {
@@ -65,26 +65,26 @@ const Marketplace = () => {
         setLoading(false);
       }
     };
-    
+
     // Debounce search
     const timer = setTimeout(() => {
       fetchProducts();
     }, 500);
-    
+
     return () => clearTimeout(timer);
   }, [search, selectedCategory, isOrganic]);
 
   return (
     <div className="bg-gray-50 min-h-[calc(100vh-4rem)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        
+
         {/* Header & Search Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 font-heading">Marketplace</h1>
             <p className="text-gray-500 mt-1">Direct from farms to your doorstep.</p>
           </div>
-          
+
           <div className="w-full md:w-auto flex items-center gap-2">
             <div className="relative w-full md:w-80">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -98,7 +98,7 @@ const Marketplace = () => {
                 className="pl-10 pr-4 py-2.5 w-full bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none shadow-sm transition-all"
               />
             </div>
-            <button 
+            <button
               onClick={() => setShowFilters(!showFilters)}
               className={`p-2.5 rounded-xl border transition-colors flex items-center justify-center ${showFilters ? 'bg-green-100 border-green-200 text-green-700' : 'bg-white border-gray-200 text-gray-600 hover:bg-gray-50'}`}
             >
@@ -108,11 +108,11 @@ const Marketplace = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
-          
+
           {/* Filters Sidebar */}
           <AnimatePresence>
             {(showFilters || window.innerWidth >= 1024) && (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, width: 0, x: -20 }}
                 animate={{ opacity: 1, width: 'auto', x: 0 }}
                 exit={{ opacity: 0, width: 0, x: -20 }}
@@ -123,16 +123,16 @@ const Marketplace = () => {
                     <h3 className="font-bold text-gray-900 font-heading">Filters</h3>
                     <button onClick={() => setShowFilters(false)}><X className="h-5 w-5 text-gray-400" /></button>
                   </div>
-                  
+
                   <div className="mb-6">
                     <h4 className="font-bold text-gray-900 font-heading mb-3 flex items-center">
                       <Filter className="h-4 w-4 mr-2 text-green-600" /> Categories
                     </h4>
                     <div className="space-y-2">
                       <label className="flex items-center cursor-pointer">
-                        <input 
-                          type="radio" 
-                          name="category" 
+                        <input
+                          type="radio"
+                          name="category"
                           checked={selectedCategory === ''}
                           onChange={() => setSelectedCategory('')}
                           className="text-green-600 focus:ring-green-500 rounded-full border-gray-300"
@@ -141,8 +141,8 @@ const Marketplace = () => {
                       </label>
                       {categories.map((cat) => (
                         <label key={cat.id} className="flex items-center cursor-pointer">
-                          <input 
-                            type="radio" 
+                          <input
+                            type="radio"
                             name="category"
                             checked={selectedCategory === cat.id.toString()}
                             onChange={() => setSelectedCategory(cat.id.toString())}
@@ -153,13 +153,13 @@ const Marketplace = () => {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="mb-6 pt-6 border-t border-gray-100">
                     <h4 className="font-bold text-gray-900 font-heading mb-3">Preferences</h4>
                     <label className="flex items-center cursor-pointer group">
                       <div className="relative flex items-center">
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           checked={isOrganic}
                           onChange={(e) => setIsOrganic(e.target.checked)}
                           className="sr-only"
@@ -170,10 +170,10 @@ const Marketplace = () => {
                       <span className="ml-3 text-sm font-medium text-gray-700 group-hover:text-green-600 transition-colors">Organic Only</span>
                     </label>
                   </div>
-                  
+
                   {(selectedCategory || isOrganic || search) && (
                     <div className="pt-6 border-t border-gray-100">
-                      <button 
+                      <button
                         onClick={() => {
                           setSearch('');
                           setSelectedCategory('');
@@ -200,10 +200,10 @@ const Marketplace = () => {
             ) : products.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {products.map((product) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
-                    onAddToCart={() => alert(`Added ${product.name} to cart!`)}
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+
                   />
                 ))}
               </div>
@@ -216,7 +216,7 @@ const Marketplace = () => {
                 <p className="text-gray-500 max-w-sm mx-auto">
                   We couldn't find any products matching your current filters. Try adjusting your search criteria or clearing filters.
                 </p>
-                <button 
+                <button
                   onClick={() => {
                     setSearch('');
                     setSelectedCategory('');
@@ -230,7 +230,7 @@ const Marketplace = () => {
             )}
           </div>
         </div>
-        
+
       </div>
     </div>
   );
