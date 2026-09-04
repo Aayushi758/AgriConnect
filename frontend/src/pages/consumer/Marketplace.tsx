@@ -4,6 +4,7 @@ import { Search, Filter, SlidersHorizontal, Loader2, X } from 'lucide-react';
 import { productsAPI } from '../../services/api';
 import ProductCard, { Product } from '../../components/ProductCard';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CartContext } from '../../context/CartContext';
 
 const Marketplace = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -12,6 +13,8 @@ const Marketplace = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<{ id: number, name: string }[]>([]);
+
+  const { addToCart } = React.useContext(CartContext);
 
   // Filters
   const [search, setSearch] = useState('');
@@ -203,7 +206,7 @@ const Marketplace = () => {
                   <ProductCard
                     key={product.id}
                     product={product}
-
+                    onAddToCart={() => addToCart(product, 1)}
                   />
                 ))}
               </div>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Star, ShoppingCart, Leaf, CheckCircle, Package } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { CartContext } from '../context/CartContext';
 
 export interface Product {
   id: number;
@@ -30,13 +29,12 @@ const FALLBACK_IMAGES: Record<string, string> = {
   'Tomato': 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?q=80&w=400',
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   const defaultFallback = 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400';
   const imageUrl = product.primary_image
     ? (product.primary_image.startsWith('http') ? product.primary_image : `/uploads/${product.primary_image}`)
     : (FALLBACK_IMAGES[product.name] || defaultFallback);
 
-  const { addToCart } = React.useContext(CartContext);
   const [added, setAdded] = useState(false);
 
   return (
@@ -100,7 +98,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             disabled={product.available_quantity <= 0}
             onClick={(e) => {
               e.preventDefault();
-              addToCart(product, 1);
+              onAddToCart();
               setAdded(true);
               setTimeout(() => setAdded(false), 2000);
             }}
